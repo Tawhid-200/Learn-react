@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Data } from "../App";
 
-const Main = ({ sendDataToParent, sendDataToParentRdm }) => {
-  const [count, setCount] = useState(0);
-
-  function handleClick() {
-    setCount(count + 1);
-    sendDataToParent(count);
-  }
-  function handleClickRdm() {
-    setCount(Math.floor(Math.random() * 100));
-    sendDataToParentRdm(count);
-  }
+const Main = () => {
+  const contest = useContext(Data);
+  const { name, age, email, address } = contest.user;
+  const { street, city, state, zip } = address;
   return (
     <main>
-      <button onClick={handleClick}>Click</button>
-      <button onClick={handleClickRdm}>Click</button>
+      <h2>Main Component</h2>
+      <p>Name: {name}</p>
+      <p>Age: {age}</p>
+      <p>Email: {email}</p>
+      <p>
+        Address: {street}, {city}, {state} {zip}
+      </p>
+      <p>Count from Context: {contest.count}</p>
     </main>
   );
 };
