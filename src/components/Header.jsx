@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Header = ({ infos }) => {
+  useEffect(() => {
+    console.log("Header component mounted");
+  }, []);
+
+  if (!infos) return null;
+
   const { title, links } = infos;
   return (
     <header>
