@@ -1,14 +1,11 @@
-import { useRef } from "react";
-import { FocusInput } from "./components/FocusInput";
-import Timer from "./components/Timer";
+import { useFetch } from "./Hooks/useFetch";
 
 const App = () => {
+  const [data] = useFetch("https://jsonplaceholder.typicode.com/todos");
   return (
     <>
       <h1>App</h1>
-
-      <FocusInput />
-      <Timer />
+      {data && data.map((item) => <p key={item.id}>{item.title}</p>)}
     </>
   );
 };
